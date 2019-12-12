@@ -1,0 +1,6 @@
+framework module Pods_BMICalculatorAppTestTests {
+  umbrella header "Pods-BMICalculatorAppTestTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

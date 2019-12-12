@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>330718996992-elqv2bt1mpi14s659tislm3g76cerejj.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.330718996992-elqv2bt1mpi14s659tislm3g76cerejj</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCd-OVSjphkO52rYQJnwI8cDdRAZ9ud3lY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>330718996992</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>angad.BMICalculatorAppTest</string>
+	<key>PROJECT_ID</key>
+	<string>bmicalculatorapp-e764d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>bmicalculatorapp-e764d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:330718996992:ios:cde88f9cb7d2fc974586e5</string>
+	<key>DATABASE_URL</key>
+	<string>https://bmicalculatorapp-e764d.firebaseio.com</string>
+</dict>
+</plist>
