@@ -19,14 +19,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var submitOutlet: UIButton!
     @IBOutlet weak var height: UITextField!
     @IBOutlet weak var toggleSwitch: UISwitch!
-//    mSJHEnpl0EXuisQwBvXNxCc7p3K2
+    @IBOutlet weak var resetOutlet: UIButton!
+    //    mSJHEnpl0EXuisQwBvXNxCc7p3K2
     
     var db:Firestore?
-    var bmi:Int?
+    var bmi = 0.0
     var datetime=Date()
     
-    var weightC:Int?
-    var hightC:Int?
+    var weightC = 0.0
+    var hightC = 0.0
     var bmiString:String?
     
     
@@ -34,6 +35,14 @@ class ViewController: UIViewController {
         super.viewDidLoad()
    
         print("date time",datetime)
+        
+        self.submitOutlet.layer.cornerRadius = 10.0
+        self.submitOutlet.layer.masksToBounds = true
+        
+        
+        self.resetOutlet.layer.cornerRadius = 10.0
+        self.resetOutlet.layer.masksToBounds = true
+        
     }
 
 
@@ -46,28 +55,38 @@ class ViewController: UIViewController {
         
         if toggleSwitch.isOn == true{
             
-            weightC = Int(self.weight.text!)
-            hightC = Int(self.height.text!)
-            print("weight height is",weightC!,hightC!)
-            
-            hightC = hightC! * 39
-            
-            bmi = weightC!*703/hightC!*hightC!
-            print("bmi is",bmi!)
-            
-            
-            
+//            weightC = Int(self.weight.text!)
+//            hightC = Int(self.height.text!)
+//            print("weight height is",weightC!,hightC!)
+//
+//            hightC = hightC! * 39
+//            print("hightC",hightC!)
+//
+////            0.453592
+////            let x = Double(weightC!)
+//            weightC = weightC! * 2
+//            print("hightC",weightC)
+//
+//
+//            bmi = weightC!*703/hightC!*hightC!
+//            print("bmi is",bmi!)
+//
         
-            addData()
+            //addData()
             
         }else if toggleSwitch.isOn == false{
             
-            weightC = Int(self.weight.text!)
-            hightC = Int(self.height.text!)
-            print("weight height is",weightC!,hightC!)
+            weightC = Double(self.weight.text!)!
+            hightC = Double(self.height.text!)!
+            print("weight height is",weightC,hightC)
+            let h = hightC * hightC
             
-            bmi = weightC!/hightC!*hightC!
-            print("bmi is",bmi!)
+            
+            print("h is",h)
+            
+            
+            bmi = (weightC/(h))
+            print("bmi is",bmi)
             
             addData()
         }
@@ -86,7 +105,7 @@ class ViewController: UIViewController {
         
             let agee = Int(age.text!)
         
-        let parameters = ["name":name.text!,"age":agee!,"userUid":"mSJHEnpl0EXuisQwBvXNxCc7p3K2","docId":docId!,"gender":gender.text!,"weight":weightC!,"height":hightC!,"date":date,"bmi":bmi!] as [String : Any]
+        let parameters = ["name":name.text!,"age":agee!,"userUid":"mSJHEnpl0EXuisQwBvXNxCc7p3K2","docId":docId!,"gender":gender.text!,"weight":weightC,"height":hightC,"date":date,"bmi":bmi] as [String : Any]
         
         db?.collection("users").document(docId!).setData(parameters as [String : Any]){
                     err in
@@ -106,22 +125,21 @@ class ViewController: UIViewController {
     
     func showBmiMessage(){
         
-        if bmi! < 16 {
+        if bmi < 16 {
             print("less than 16")
             showAlert(x: "Your BMI shows you are in category Severe Thickness")
-        }else if bmi == 16 || bmi == 17{
+        }else if bmi >= 16 || bmi <= 17{
              showAlert(x: "Your BMI shows you are in category Moderate Thickness")
-        }else if bmi == 17 || bmi == 18{
+        }else if bmi >= 17 || bmi <= 18{
             showAlert(x: "Your BMI shows you are in category Mild Thickness")
-        }else if bmi == 18 || bmi == 25{
+        }else if bmi >= 18 || bmi <= 25{
             showAlert(x: "Your BMI shows you are in category Normal")
-        }else if bmi == 25 || bmi == 30{
+        }else if bmi >= 25 || bmi <= 30{
             showAlert(x: "Your BMI shows you are in category Overweight")
-        }else if bmi == 30 || bmi == 35{
+        }else if bmi >= 30 || bmi <= 35{
             showAlert(x: "Your BMI shows you are in category Obese class 1")
-        }else if bmi == 35 || bmi == 40{
             showAlert(x: "Your BMI shows you are in category Obese class 2")
-        }else if bmi!>40{
+        }else if bmi>40{
             showAlert(x: "Your BMI shows you are in category Obese class 3")
         }
         
@@ -131,6 +149,15 @@ class ViewController: UIViewController {
         
         let alert = UIAlertController(title: "Message", message: x, preferredStyle: .alert)
         let okay = UIAlertAction(title: "Done", style: .default, handler: { (action) in
+            self.name.text = ""
+            self.age.text = ""
+            self.gender.text = ""
+            self.weight.text = ""
+            self.height.text = ""
+            
+            
+            self.performSegue(withIdentifier: "nextVC", sender: nil)
+            
         })
         alert.addAction(okay)
         self.present(alert, animated: true, completion: nil)
@@ -139,6 +166,23 @@ class ViewController: UIViewController {
     }
     
     
+    
+    
+    @IBAction func records(_ sender: UIBarButtonItem) {
+        
+        self.performSegue(withIdentifier: "nextVC", sender: nil)
+        
+    }
+    
+    
+    
+    @IBAction func resetAction(_ sender: UIButton) {
+        self.name.text = ""
+        self.age.text = ""
+        self.gender.text = ""
+        self.weight.text = ""
+        self.height.text = ""
+    }
     
     
     

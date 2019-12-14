@@ -19,6 +19,7 @@
 		D43993AA23A1B49F007C55CD /* BMICalculatorAppTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43993A923A1B49F007C55CD /* BMICalculatorAppTestUITests.swift */; };
 		D43993B823A1B615007C55CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D43993B723A1B615007C55CD /* GoogleService-Info.plist */; };
 		D43993BA23A1DA47007C55CD /* DisplayDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43993B923A1DA47007C55CD /* DisplayDataViewController.swift */; };
+		D4FB210F23A3F21900499108 /* UpdateBMIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB210E23A3F21900499108 /* UpdateBMIViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		D43993AB23A1B49F007C55CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D43993B723A1B615007C55CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D43993B923A1DA47007C55CD /* DisplayDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDataViewController.swift; sourceTree = "<group>"; };
+		D4FB210E23A3F21900499108 /* UpdateBMIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBMIViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 				D439939223A1B49E007C55CD /* LaunchScreen.storyboard */,
 				D439939523A1B49E007C55CD /* Info.plist */,
 				D43993B923A1DA47007C55CD /* DisplayDataViewController.swift */,
+				D4FB210E23A3F21900499108 /* UpdateBMIViewController.swift */,
 			);
 			path = BMICalculatorAppTest;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 			files = (
 				D43993BA23A1DA47007C55CD /* DisplayDataViewController.swift in Sources */,
 				D439938C23A1B49B007C55CD /* ViewController.swift in Sources */,
+				D4FB210F23A3F21900499108 /* UpdateBMIViewController.swift in Sources */,
 				D439938A23A1B49B007C55CD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
