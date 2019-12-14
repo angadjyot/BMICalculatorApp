@@ -41,7 +41,7 @@ class DisplayDataViewController: UIViewController,UITableViewDelegate,UITableVie
         
         let indexx = self.dict[indexPath.row]
         let weight = indexx["weight"] as? Int
-        let height = indexx["height"] as? Int
+        let height = indexx["height"] as? Double
         let bmi = indexx["bmi"] as? Double
         let dat = indexx["date"] as? Timestamp
         print("dat is",dat!,dat?.dateValue() as Any)

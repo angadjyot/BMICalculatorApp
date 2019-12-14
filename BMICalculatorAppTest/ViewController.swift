@@ -47,7 +47,19 @@ class ViewController: UIViewController {
 
 
     @IBAction func submitAction(_ sender: UIButton) {
-        calculateBMI()
+        
+        
+        if self.name.text == "" || self.age.text == "" || self.gender.text == "" || self.weight.text == "" || self.height.text == ""{
+            let alert = UIAlertController(title: "Message", message: "Please add all the fields to calculate your BMI!!", preferredStyle: .alert)
+            let okay = UIAlertAction(title: "Done", style: .default, handler: { (action) in
+            })
+            alert.addAction(okay)
+            self.present(alert, animated: true, completion: nil)
+            
+        }else{
+          calculateBMI()
+        }
+       
     }
     
     
@@ -55,24 +67,25 @@ class ViewController: UIViewController {
         
         if toggleSwitch.isOn == true{
             
-//            weightC = Int(self.weight.text!)
-//            hightC = Int(self.height.text!)
-//            print("weight height is",weightC!,hightC!)
-//
-//            hightC = hightC! * 39
-//            print("hightC",hightC!)
-//
-////            0.453592
-////            let x = Double(weightC!)
-//            weightC = weightC! * 2
-//            print("hightC",weightC)
-//
-//
-//            bmi = weightC!*703/hightC!*hightC!
-//            print("bmi is",bmi!)
-//
+            weightC = Double(self.weight.text!)!
+            hightC = Double(self.height.text!)!
+            print("weight height is",weightC,hightC)
+
+            hightC = hightC / 39
+            print("hightC",hightC)
+
+//            0.453592
+//            let x = Double(weightC!)
+            
+            weightC = weightC * 2
+            print("hightC",weightC)
+
+
+            bmi = weightC*703/hightC*hightC
+            print("bmi is",bmi)
+
         
-            //addData()
+            addData()
             
         }else if toggleSwitch.isOn == false{
             
@@ -82,6 +95,9 @@ class ViewController: UIViewController {
             let h = hightC * hightC
             
             
+//            weightC = weightC
+            hightC = hightC*0.305
+            print("weight height is",weightC,hightC)
             print("h is",h)
             
             
@@ -96,30 +112,31 @@ class ViewController: UIViewController {
     func addData(){
         
 //                self.indicator.startAnimating()
-        
-
+       
             db = Firestore.firestore()
             let docId = db?.collection("users").document().documentID
             let date = Date()
             print("date is",date)
-        
+            
             let agee = Int(age.text!)
-        
-        let parameters = ["name":name.text!,"age":agee!,"userUid":"mSJHEnpl0EXuisQwBvXNxCc7p3K2","docId":docId!,"gender":gender.text!,"weight":weightC,"height":hightC,"date":date,"bmi":bmi] as [String : Any]
-        
-        db?.collection("users").document(docId!).setData(parameters as [String : Any]){
-                    err in
-                    if let error = err{
-                        print(error.localizedDescription)
-        //                self.indicator.stopAnimating()
-                    }else{
-                        print("document added successfully")
-        //                self.indicator.stopAnimating()
-                        self.showBmiMessage()
-                      
-                    }
-        
+            
+            let parameters = ["name":name.text!,"age":agee!,"userUid":"mSJHEnpl0EXuisQwBvXNxCc7p3K2","docId":docId!,"gender":gender.text!,"weight":weightC,"height":hightC,"date":date,"bmi":bmi] as [String : Any]
+            
+            db?.collection("users").document(docId!).setData(parameters as [String : Any]){
+                err in
+                if let error = err{
+                    print(error.localizedDescription)
+                    //                self.indicator.stopAnimating()
+                }else{
+                    print("document added successfully")
+                    //                self.indicator.stopAnimating()
+                    self.showBmiMessage()
+                    
                 }
+                
+            }
+        
+        
     }
     
     
@@ -127,7 +144,7 @@ class ViewController: UIViewController {
         
         if bmi < 16 {
             print("less than 16")
-            showAlert(x: "Your BMI shows you are in category Severe Thickness")
+            showAlert(x: "Ypur BMI is \(bmi). \n Your BMI shows you are in category Severe Thickness")
         }else if bmi >= 16 || bmi <= 17{
              showAlert(x: "Your BMI shows you are in category Moderate Thickness")
         }else if bmi >= 17 || bmi <= 18{
