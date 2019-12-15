@@ -1,10 +1,13 @@
-//
-//  DisplayDataViewController.swift
+
 //  BMICalculatorAppTest
 //
 //  Created by Angadjot singh on 11/12/19.
-//  Copyright © 2019 Angadjot singh. All rights reserved.
-//
+
+
+// File name - DisplayDataViewController.swift
+// Author's name - Angadjot Singh Modi
+// Student id - 301060981
+// Date - 11/12/19
 
 import UIKit
 import Firebase
@@ -38,6 +41,8 @@ class DisplayDataViewController: UIViewController,UITableViewDelegate,UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")!
+     
+   // populating the table rows
         
         let indexx = self.dict[indexPath.row]
         let weight = indexx["weight"] as? Double
@@ -55,9 +60,13 @@ class DisplayDataViewController: UIViewController,UITableViewDelegate,UITableVie
             BMIdate = p
         }
         
-        self.datee = dat?.dateValue()
+   
+         self.datee = dat?.dateValue()
+    // calling the date function to convert the date to string for displaying
          let p = getDate()
         
+        
+    // setting the values to the label
         if let d = cell.viewWithTag(4) as? UILabel{
             d.text = p
         }
@@ -79,6 +88,8 @@ class DisplayDataViewController: UIViewController,UITableViewDelegate,UITableVie
         return cell
     }
     
+    
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
@@ -96,6 +107,8 @@ class DisplayDataViewController: UIViewController,UITableViewDelegate,UITableVie
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+    // method for deleting the row
         if (editingStyle == .delete) {
             let indexx = self.dict[indexPath.row]
             let docId = (indexx["docId"] as? String)!
@@ -126,7 +139,9 @@ class DisplayDataViewController: UIViewController,UITableViewDelegate,UITableVie
     func retrieveData(){
     
         db = Firestore.firestore()
-       
+        
+  // method for retrieving the data using the where condition and it also contains listener
+        
         db?.collection("users").whereField("userUid", isEqualTo: "mSJHEnpl0EXuisQwBvXNxCc7p3K2").addSnapshotListener({ (snapshots, err) in
             if let error = err{
                 print("err",error.localizedDescription)
@@ -158,6 +173,8 @@ class DisplayDataViewController: UIViewController,UITableViewDelegate,UITableVie
 // function for deleting data from firestore
     func deleteData(docId:String){
         db = Firestore.firestore()
+     
+   // method for deleting the data from firestore
         db?.collection("users").document(docId).delete(){
             err in
             if let error = err{

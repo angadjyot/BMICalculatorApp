@@ -1,10 +1,16 @@
 //
-//  UpdateBMIViewController.swift
+
 //  BMICalculatorAppTest
 //
 //  Created by Angadjot singh on 13/12/19.
 //  Copyright © 2019 Angadjot singh. All rights reserved.
 //
+// File name - UpdateBMIViewController.swift
+// Author's name - Angadjot Singh Modi
+// Student id - 301060981
+// Date - 13/12/19.
+
+
 
 import UIKit
 import Firebase

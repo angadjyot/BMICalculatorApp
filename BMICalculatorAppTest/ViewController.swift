@@ -3,8 +3,11 @@
 //  BMICalculatorAppTest
 //
 //  Created by Angadjot singh on 11/12/19.
-//  Copyright © 2019 Angadjot singh. All rights reserved.
-//
+
+// File name - ViewController.swift
+// Author's name - Angadjot Singh Modi
+// Student id - 301060981
+// Date - 11/12/19
 
 import UIKit
 import FirebaseAuth
@@ -77,7 +80,8 @@ class ViewController: UIViewController,UITextFieldDelegate {
     
 // function for calculating the bmi
     func calculateBMI(){
-        
+    
+   // if toggle switch is on bmi will be calculated in imperial units
         if toggleSwitch.isOn == true{
             
             weightC = Double(self.weight.text!)!
@@ -101,6 +105,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
             addData()
             
         }else if toggleSwitch.isOn == false{
+// if toggle switch is off bmi will be calculated in metric units
             
             weightC = Double(self.weight.text!)!
             hightC = Double(self.height.text!)!
@@ -125,7 +130,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
     func addData(){
         
 //                self.indicator.startAnimating()
-       
+    // seeting the data to firstore
             db = Firestore.firestore()
             let docId = db?.collection("users").document().documentID
             let date = Date()
@@ -134,7 +139,9 @@ class ViewController: UIViewController,UITextFieldDelegate {
             let agee = Int(age.text!)
             
             let parameters = ["name":name.text!,"age":agee!,"userUid":"mSJHEnpl0EXuisQwBvXNxCc7p3K2","docId":docId!,"gender":gender.text!,"weight":weightC,"height":hightC,"date":date,"bmi":bmi] as [String : Any]
-            
+   
+        
+    // setdata function for adding data
             db?.collection("users").document(docId!).setData(parameters as [String : Any]){
                 err in
                 if let error = err{
