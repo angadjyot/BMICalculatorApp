@@ -15,7 +15,7 @@ class DisplayDataViewController: UIViewController,UITableViewDelegate,UITableVie
     
     @IBOutlet weak var table: UITableView!
     
-    
+ // declaring the variables
     var db:Firestore?
     var dict = [[String:AnyObject]]()
     var datee:Date?
@@ -30,7 +30,7 @@ class DisplayDataViewController: UIViewController,UITableViewDelegate,UITableVie
       retrieveData()
     }
     
-    
+// table view function for populating the table
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.dict.count
     }
@@ -40,7 +40,7 @@ class DisplayDataViewController: UIViewController,UITableViewDelegate,UITableVie
         let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")!
         
         let indexx = self.dict[indexPath.row]
-        let weight = indexx["weight"] as? Int
+        let weight = indexx["weight"] as? Double
         let height = indexx["height"] as? Double
         let bmi = indexx["bmi"] as? Double
         let dat = indexx["date"] as? Timestamp
@@ -103,6 +103,8 @@ class DisplayDataViewController: UIViewController,UITableViewDelegate,UITableVie
         }
     }
     
+    // method for taking the object to the next view controller
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "nextVC"{
             let vc = segue.destination as? UpdateBMIViewController
@@ -111,7 +113,7 @@ class DisplayDataViewController: UIViewController,UITableViewDelegate,UITableVie
     }
     
     
-    
+ // function for converting the date to string
     func getDate()->String{
         let dateFormatt = DateFormatter()
         dateFormatt.dateFormat = "dd-MM-yyyy"
@@ -120,7 +122,7 @@ class DisplayDataViewController: UIViewController,UITableViewDelegate,UITableVie
         return dateNew
     }
     
-    
+// function for retrieving data from firestore
     func retrieveData(){
     
         db = Firestore.firestore()
@@ -153,7 +155,7 @@ class DisplayDataViewController: UIViewController,UITableViewDelegate,UITableVie
         })
     }
     
-    
+// function for deleting data from firestore
     func deleteData(docId:String){
         db = Firestore.firestore()
         db?.collection("users").document(docId).delete(){

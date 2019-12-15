@@ -15,6 +15,9 @@ class UpdateBMIViewController: UIViewController {
     
     @IBOutlet weak var weight: UITextField!
 //    @IBOutlet weak var height: UITextField!
+    
+    
+ // declaring the variables
     var dictIndex = [String:AnyObject]()
 
     var weightC = 0.0
@@ -29,7 +32,7 @@ class UpdateBMIViewController: UIViewController {
     }
     
 
-    
+ // action for updating the particular record
     @IBAction func updateBMI(_ sender: UIButton) {
 
         weightC = Double(self.weight.text!)!
@@ -49,7 +52,8 @@ class UpdateBMIViewController: UIViewController {
         updateData()
         
     }
-    
+  
+ // function for showing the bmi category in alert view
     func showBmiMessage(){
         
         if bmi < 16 {
@@ -72,6 +76,7 @@ class UpdateBMIViewController: UIViewController {
         
     }
     
+// show alert function
     func showAlert(x:String){
         
         let alert = UIAlertController(title: "Message", message: x, preferredStyle: .alert)
@@ -82,6 +87,8 @@ class UpdateBMIViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    
+// function for updating the data on firstore
     func updateData(){
         db = Firestore.firestore()
         

@@ -10,8 +10,10 @@ import UIKit
 import FirebaseAuth
 import Firebase
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,UITextFieldDelegate {
 
+ // outlets dor the UI
+    
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var age: UITextField!
     @IBOutlet weak var gender: UITextField!
@@ -22,6 +24,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var resetOutlet: UIButton!
     //    mSJHEnpl0EXuisQwBvXNxCc7p3K2
     
+    
+ // declaring the variables
     var db:Firestore?
     var bmi = 0.0
     var datetime=Date()
@@ -34,8 +38,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
    
-        print("date time",datetime)
+        //print("date time",datetime)
         
+ //   code for corner radius button
         self.submitOutlet.layer.cornerRadius = 10.0
         self.submitOutlet.layer.masksToBounds = true
         
@@ -44,11 +49,18 @@ class ViewController: UIViewController {
         self.resetOutlet.layer.masksToBounds = true
         
     }
+    
+ //  method to close keyboard on pressing returb button
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 
-
+    
+// action for calculating the bmi
     @IBAction func submitAction(_ sender: UIButton) {
         
-        
+//        validating the textfields
         if self.name.text == "" || self.age.text == "" || self.gender.text == "" || self.weight.text == "" || self.height.text == ""{
             let alert = UIAlertController(title: "Message", message: "Please add all the fields to calculate your BMI!!", preferredStyle: .alert)
             let okay = UIAlertAction(title: "Done", style: .default, handler: { (action) in
@@ -57,12 +69,13 @@ class ViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
             
         }else{
+   // function for calculating the bmi
           calculateBMI()
         }
        
     }
     
-    
+// function for calculating the bmi
     func calculateBMI(){
         
         if toggleSwitch.isOn == true{
@@ -108,7 +121,7 @@ class ViewController: UIViewController {
         }
     }
     
-    
+ // function for adding the data to the firestore
     func addData(){
         
 //                self.indicator.startAnimating()
@@ -139,7 +152,7 @@ class ViewController: UIViewController {
         
     }
     
-    
+ // function for showing the bmi category in alert view
     func showBmiMessage(){
         
         if bmi < 16 {
@@ -162,6 +175,7 @@ class ViewController: UIViewController {
         
     }
     
+ // show alert function
     func showAlert(x:String){
         
         let alert = UIAlertController(title: "Message", message: x, preferredStyle: .alert)
@@ -184,7 +198,7 @@ class ViewController: UIViewController {
     
     
     
-    
+  // action for viewing the records on next page
     @IBAction func records(_ sender: UIBarButtonItem) {
         
         self.performSegue(withIdentifier: "nextVC", sender: nil)
@@ -192,7 +206,7 @@ class ViewController: UIViewController {
     }
     
     
-    
+   // action for resetting the values
     @IBAction func resetAction(_ sender: UIButton) {
         self.name.text = ""
         self.age.text = ""
